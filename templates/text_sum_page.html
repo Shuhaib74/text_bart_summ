@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    {{ super() }}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='text_sum_page.css') }}">
+{% endblock %}
+
+{% block icons %}
+    {{ super() }}
+{% endblock %}
+
+{% block title %}
+    <title>Text Summarization - BART-Fine-tuned</title>
+{% endblock %}
+
+{% block body %}
+    {% block header %}
+        {{ super() }}
+    {% endblock %}
+
+    {% block content %}
+        <div class="container">
+            <h2 class="model_title">🤖 AI Article Summary Generator</h2>
+            <div class="form_container">
+                <form action="{{ url_for('text_summarization') }}" method="POST">
+                    <textarea name="article" class="review_input" placeholder="Enter an article here...." rows="10" cols="50" required>{{ generated_summary|safe  }}</textarea><br/>
+                    <!-- added | safe to add prefix before generated summary  -->
+                    <br/>
+                    <p class="device_p">Device:</p>
+                    <div class="radio-button-group">
+
+                        <input type="radio" id="option1" name="device" value="cpu" required>
+                        <label for="option1">CPU</label>
+
+                        <input type="radio" id="option2" name="device" value="cpu">
+                        <label for="option2">GPU</label>
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-1"><p class="slider_p">Max length: <span id="sliderValue">50</span></p>
+                            <input type="range" id="mySlider" name="max_len" min="40" max="500" step="5" value="200" required>
+                            <!-- <br/> -->
+                        </div>
+                        
+                        <div class="slider-2">
+                            <p class="slider_p">Min length: <span id="sliderValue2">20</span></p>
+                            <input type="range" id="mySlider2" name="min_len" min="20" max="200" step="5" value="50" required>
+                        </div>
+
+                        <div class="slider-3">
+                            <p class="slider_p">Length Penalty: <span id="sliderValue3">1.0</span></p>
+                            <input type="range" id="mySlider3" name="len_penalty" min="0.5" max="2.0" step="0.1" value="1.0" required>
+                        </div>
+                        
+                        <!-- <br/> -->
+
+                    </div>
+
+                    <button type="submit" class="submit_btn">Summarize Article</button>
+                </form>
+                <br/>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="message_container">
+                        {% for category, message in messages %}
+                            {% if category == 'success' %}
+                                <div class="success_message">
+                                    {{ message }}
+                                </div>
+                            {% elif category == 'error' %}
+                                <div class="error_message">
+                                    {{ message }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% endwith%}
+
+            </div>
+        </div>
+
+    {% endblock %}
+
+    {% block scriptbody %}
+        {{ super() }}
+
+        <script>
+            // Get references to the slider and the value display
+            const slider = document.getElementById('mySlider');
+            const sliderValue = document.getElementById('sliderValue');
+
+            // Update the displayed value when the slider is moved
+            slider.addEventListener('input', function() {
+                sliderValue.textContent = slider.value;
+            });
+
+            // Get references to the slider and the value display
+            const slider2 = document.getElementById('mySlider2');
+            const sliderValue2 = document.getElementById('sliderValue2');
+
+            // Update the displayed value when the slider is moved
+            slider2.addEventListener('input', function() {
+                sliderValue2.textContent = slider2.value;
+            });
+
+            // Get references to the slider and the value display
+            const slider3 = document.getElementById('mySlider3');
+            const sliderValue3 = document.getElementById('sliderValue3');
+
+            // Update the displayed value when the slider is moved
+            slider3.addEventListener('input', function() {
+                sliderValue3.textContent = slider3.value;
+            });
+        </script>
+    {% endblock %}
+
+{% endblock %}

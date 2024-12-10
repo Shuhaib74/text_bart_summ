@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, intial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="Shuhaib">
+
+        {% block styles %}
+            <link rel="stylesheet" href="{{url_for('static', filename='base.css')}}">
+        {% endblock %}
+
+        {% block icons %}
+            <script src="https://kit.fontawesome.com/55d7ca6d4f.js" crossorigin="anonymous"></script>
+
+            <!-- Boxicons cnd -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css">
+        {% endblock %}
+
+        {% block title %}
+            <title>Home Page</title>
+        {% endblock %}
+
+        <link rel="icon" href="static/images/logo.png" type="image/x-icon">
+    </head>
+
+    {% block body %}
+    <body>
+        {% block header %}
+            <header class="header" id="header">
+                <div class="nav-container">
+                    <a href="#" class="logo" id="web_log">GenAI.</a>
+                    <div class="mobile" id="menu"><i class='bx bx-menu-alt-right'></i></div>
+                    <nav class="navbar" id="navbar">
+                        <!-- <a href="#" class="link">home</a> -->
+                        <!-- <a href="#about" class="link">about</a> -->
+                        <!-- <a href="#" class="link">Projects</a> -->
+                        <a href="https://github.com/Shuhaib73?tab=repositories" class="link" target="_blank">GitHub</a>
+                        <a href="https://www.linkedin.com/in/mohamedshuhaib/" class="link" target="_blank">LinkedIn</a>
+                        <div class="mobile close" id="close"><i class='bx bx-x'></i></div>
+        
+                    </nav>
+                </div>
+        
+            </header>
+        {% endblock %}
+
+        {% block content %}
+            <section class="home" id="home">
+                <div class="container">
+                    <div class="content">
+                        <h1 class="title"><span>Hi,</span> <br> I'm Shuhaib</h1>
+                        <div class="subtitle">
+                            <h3 class="text"> Data Scientist</h3>
+                            <h3 class="bg"> Data Scientist</h3>
+        
+                        </div>
+                        <div class="desc">
+                            <p>
+                                Data Scientist with a background in machine learning and artificial intelligence. Skilled in developing and evaluating models, and keen to utilize this expertise to support data-driven decision-making and project outcomes. 
+                            </p>
+                        </div>
+                        <div class="home-btns">
+                            <button class="btn btn-outline" onclick="redirectToContact()">let's talk</button>
+                            <button class="btn btn-primary" onclick="redirectToProjects()">Projects</button>
+        
+                        </div>
+                    </div>
+        
+                </div>
+                <div class="social-media">
+                    <a href="#" class="social"><i class='bx bxl-facebook'></i></a>
+                    <a href="#" class="social"><i class='bx bxl-instagram'></i></a>
+                    <a href="https://github.com/Shuhaib73?tab=repositories" class="social" target="_blank"><i class='bx bxl-github' ></i></a>
+                    <a href="https://www.linkedin.com/in/mohamedshuhaib/" class="social" target="_blank"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </section>
+
+            <!-- <section class="about" id="about">
+                <div class="container">
+                    <div class="heading">
+                        <h1 class="title">About</h1>
+                        <h3 class="subtitle">Data Scientist</h3>
+                        
+                    </div>
+                    <div class="items">
+                        <div class="item">
+                            <div class="image">
+                                <img src="/static/images/about-1.jpg" alt="" srcset="">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <h1 class="name">Tommy Hardy</h1>
+                            <div class="desc">
+                                <p>
+                                    Creating a fully responsive personnel portfolio using HTML and CSS is an essential skill for modern web designers. 
+                                </p>
+                                <p>
+                                    The foundation of this task lies in understanding and implementing responsive design principles, which ensure that your portfolio looks and functions well across various devices and screen sizes.
+                                </p>
+                            </div>
+                            <div class="about-btns">
+                                <button class="btn btn-outline">Let's talk</button>
+                                <button class="btn btn-primary">Let's talk</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+
+
+        {% endblock %}
+
+        {% block scriptbody %}
+            <script>
+
+                const navbar = document.getElementById('navbar')
+                const closeMenu = document.getElementById('close')
+                const menu = document.getElementById('menu')
+
+                menu.addEventListener('click', () => {
+                    navbar.classList.add('active')
+                })
+                closeMenu.addEventListener('click', () => {
+                    navbar.classList.remove('active')
+                })
+
+
+            </script>
+
+        {% endblock %}
+
+
+    </body>
+    {% endblock %}
+</html> 
